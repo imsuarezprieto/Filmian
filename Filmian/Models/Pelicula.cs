@@ -16,5 +16,9 @@ namespace Filmian.Models
 		public String	Titulo			{ get; set; }
 		public Int16	Duracion		{ get; set; }
 
+		// REFERENCES
+		public Int16	DirectorId		{ get; set; }
+		public Director	Director		{ get; set; }
+
 	}
 }

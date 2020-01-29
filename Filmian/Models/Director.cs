@@ -11,5 +11,7 @@ namespace Filmian.Models
 	{
 		public Int16		DirectorID		{ get; set; }
 		public String		Nombre			{ get; set; }
+
+		public virtual		IEnumerable<Pelicula> Peliculas		{ get; set; }
 	}
 }
