@@ -14,7 +14,7 @@ namespace Filmian.Models
 
 		protected override void OnConfiguring( DbContextOptionsBuilder optionsBuilder )
 		{
-			optionsBuilder.UseSqlServer( @"Server=localhost\SQLEXPRESS02;Database=Migrations;Trusted_Connection=True;" );
+			optionsBuilder.UseSqlServer( @"Server=localhost\SQLEXPRESS02;Database=PROYECTO;Trusted_Connection=True;" );
 		}
 
 		public DbSet<Models.Pelicula>		Peliculas		{ get; set; }
