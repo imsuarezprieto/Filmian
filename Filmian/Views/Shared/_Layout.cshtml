@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Filmian</title>
+    <title>@ViewData["Title"] - FILMIAN</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -16,13 +16,13 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse nav-pills">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Directores"><span class="icon">&#xE125;</span> Directores</a>
+                            <a class="nav-link @(ViewBag.Section=="Directores"?"text-light active":"text-dark")" asp-area="" asp-controller="Directores"><span class="icon">&#xE125;</span> Directores</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Peliculas"><span class="icon">&#xE116;</span> Películas</a>
+                            <a class="nav-link @(ViewBag.Section=="Peliculas"?"text-light active":"text-dark")" asp-area="" asp-controller="Peliculas"><span class="icon">&#xE116;</span> Películas</a>
                         </li>
                     </ul>
                 </div>

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Filmian.Models;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Filmian.Controllers
 {
@@ -18,8 +19,14 @@ namespace Filmian.Controllers
             _context = new Models.DBContext();
         }
 
-        // GET: Directores
-        public async Task<IActionResult> Index()
+		public override void OnActionExecuting( ActionExecutingContext context ) 
+		{
+			ViewBag.Section = "Directores";
+			base.OnActionExecuting( context );
+		}
+
+		// GET: Directores
+		public async Task<IActionResult> Index()
         {
             return View(await _context.Directors.ToListAsync());
         }
