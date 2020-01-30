@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Filmian.Migrations
 {
-    [DbContext(typeof(ModelContext))]
+    [DbContext(typeof(DBContext))]
     partial class ModelContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

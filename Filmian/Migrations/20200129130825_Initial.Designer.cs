@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Filmian.Migrations
 {
-    [DbContext(typeof(ModelContext))]
+    [DbContext(typeof(DBContext))]
     [Migration("20200129130825_Initial")]
     partial class Initial
     {

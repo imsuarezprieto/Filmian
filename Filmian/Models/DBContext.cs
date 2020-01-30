@@ -6,18 +6,28 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
+
 namespace Filmian.Models
 {
-	public class ModelContext : DbContext
+
+	public interface IDBContext
 	{
-		public ModelContext() { }
+		public DbSet<Pelicula>		Peliculas		{ get; set; }
+		public DbSet<Director>		Directors		{ get; set; }
+	}
+
+
+	public class DBContext : DbContext, IDBContext
+	{
+		public DBContext() { }
 
 		protected override void OnConfiguring( DbContextOptionsBuilder optionsBuilder )
 		{
 			optionsBuilder.UseSqlServer( @"Server=localhost\SQLEXPRESS02;Database=PROYECTO;Trusted_Connection=True;" );
 		}
 
-		public DbSet<Models.Pelicula>		Peliculas		{ get; set; }
-		public DbSet<Models.Director>		Directors		{ get; set; }
+		public DbSet<Pelicula> Peliculas { get; set; }
+		public DbSet<Director> Directors { get; set; }
 	}
+
 }

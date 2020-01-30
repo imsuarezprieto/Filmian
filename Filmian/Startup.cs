@@ -24,6 +24,7 @@ namespace Filmian
 		public void ConfigureServices( IServiceCollection services )
 		{
 			services.AddControllersWithViews();
+			services.AddScoped<Models.DBContext,Models.DBContext>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,7 +40,6 @@ namespace Filmian
 			}
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
-
 			app.UseRouting();
 
 			app.UseAuthorization();
