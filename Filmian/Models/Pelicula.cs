@@ -17,8 +17,8 @@ namespace Filmian.Models
 		public Int16	Duracion		{ get; set; }
 
 		// REFERENCES
-		public Int16	DirectorId		{ get; set; }
-		public Director	Director		{ get; set; }
+		public Int16				DirectorId { get; set; }
+		public virtual	Director	Director		{ get; set; }
 
 	}
 }

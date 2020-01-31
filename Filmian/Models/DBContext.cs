@@ -19,11 +19,15 @@ namespace Filmian.Models
 
 	public class DBContext : DbContext, IDBContext
 	{
-		public DBContext() { }
+		public DBContext() 
+		{
+		}
 
 		protected override void OnConfiguring( DbContextOptionsBuilder optionsBuilder )
 		{
-			optionsBuilder.UseSqlServer( @"Server=localhost\SQLEXPRESS02;Database=PROYECTO;Trusted_Connection=True;" );
+			optionsBuilder
+					.UseLazyLoadingProxies()
+					.UseSqlServer( @"Server=localhost\SQLEXPRESS;Database=PROYECTO;Trusted_Connection=True;" );
 		}
 
 		public DbSet<Pelicula> Peliculas { get; set; }

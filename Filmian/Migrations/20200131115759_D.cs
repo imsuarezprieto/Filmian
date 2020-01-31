@@ -2,7 +2,7 @@
 
 namespace Filmian.Migrations
 {
-    public partial class Initial : Migration
+    public partial class D : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
