@@ -60,7 +60,7 @@ namespace Filmian.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DirectorID,Nombre")] Director director)
+        public async Task<IActionResult> Create([Bind("DirectorID,Nombre,Nacionalidad,FechaNacimiento")] Director director)
         {
             if (ModelState.IsValid)
             {
@@ -92,7 +92,7 @@ namespace Filmian.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(short id, [Bind("DirectorID,Nombre")] Director director)
+        public async Task<IActionResult> Edit(short id, [Bind("DirectorID,Nombre,Nacionalidad,FechaNacimiento")] Director director)
         {
             if (id != director.DirectorID)
             {
