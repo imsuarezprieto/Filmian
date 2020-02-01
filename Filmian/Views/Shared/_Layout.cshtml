@@ -9,25 +9,25 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/img/reel.png" height="64" width="64"/>Filmian</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse nav-pills">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link @(ViewBag.Section=="Directores"?"text-light active":"text-dark")" asp-area="" asp-controller="Directores"><span class="icon">&#xE125;</span> Directores</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link @(ViewBag.Section=="Peliculas"?"text-light active":"text-dark")" asp-area="" asp-controller="Peliculas"><span class="icon">&#xE116;</span> Películas</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+		<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark fixed-top border-bottom box-shadow mb-3">
+			<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/img/film.png" height="32" width="32" class="d-inline-block align-top" /> Filmian</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+					aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="container">
+				<div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse nav-pills nav-justified">
+					<ul class="navbar-nav justify-content-start flex-grow-1">
+						<li class="nav-item">
+							<a class="nav-link @(ViewBag.Section=="Directores"?"active":"")" asp-area="" asp-controller="Directores"><span class="icon">&#xE125;</span> Directores</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link @(ViewBag.Section=="Peliculas"?"active":"")" asp-area="" asp-controller="Peliculas"><span class="icon">&#xE116;</span> Películas</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
