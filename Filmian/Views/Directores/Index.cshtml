@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Filmian.Models.Director>
 
 @{
-    ViewData["Title"] = "FILMIAN · Directores";
+    ViewData["Title"] = "Directores";
 }
 
 <h1>Directores</h1>
@@ -12,9 +12,15 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Nombre</th>
-			<th>Nacionalidad</th>
-			<th>Fecha de nacimiento</th>
+            <th>
+				@Html.DisplayNameFor( model => model.Nombre )
+			</th>
+			<th>
+				@Html.DisplayNameFor( model => model.Pais)
+			</th>
+			<th>
+				@Html.DisplayNameFor( model => model.FechaNacimiento )
+			</th>
             <th></th>
         </tr>
     </thead>
@@ -25,7 +31,7 @@
 					@Html.DisplayFor(modelItem => item.Nombre)
 				</td>
 				<td>
-					@Html.DisplayFor(modelItem => item.Nacionalidad)
+					@Html.DisplayFor(modelItem => item.Pais.Nombre)
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.FechaNacimiento)

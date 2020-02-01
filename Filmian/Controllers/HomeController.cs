@@ -16,6 +16,7 @@ namespace Filmian.Controllers
 		public HomeController( ILogger<HomeController> logger )
 		{
 			_logger = logger;
+
 		}
 
 		public IActionResult Index()
@@ -32,6 +33,14 @@ namespace Filmian.Controllers
 		public IActionResult Error()
 		{
 			return View( new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier } );
+		}
+
+		private async void InitDBAsync()
+		{
+			Task.Run(() => {
+				using (var ctx = new Models.DBContext() ) {
+				}
+			});
 		}
 	}
 }

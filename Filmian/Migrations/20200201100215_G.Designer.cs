@@ -4,14 +4,16 @@ using Filmian.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Filmian.Migrations
 {
     [DbContext(typeof(DBContext))]
-    partial class DBContextModelSnapshot : ModelSnapshot
+    [Migration("20200201100215_G")]
+    partial class G
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,20 +29,17 @@ namespace Filmian.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("FechaNacimiento")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2020, 2, 1, 0, 0, 0, 0, DateTimeKind.Local));
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Nacionalidad")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PaisId")
-                        .HasColumnType("int");
-
                     b.HasKey("DirectorID");
-
-                    b.HasIndex("PaisId");
 
                     b.ToTable("Directores");
                 });
@@ -54,11 +53,9 @@ namespace Filmian.Migrations
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PaisId");
-
-                    b.HasIndex("Nombre");
 
                     b.ToTable("Paises");
                 });
@@ -85,15 +82,6 @@ namespace Filmian.Migrations
                     b.HasIndex("DirectorId");
 
                     b.ToTable("Peliculas");
-                });
-
-            modelBuilder.Entity("Filmian.Models.Director", b =>
-                {
-                    b.HasOne("Filmian.Models.Pais", "Pais")
-                        .WithMany()
-                        .HasForeignKey("PaisId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Filmian.Models.Pelicula", b =>

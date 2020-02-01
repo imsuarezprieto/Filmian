@@ -52,7 +52,7 @@ namespace Filmian.Controllers
         // GET: Directores/Create
         public IActionResult Create()
         {
-            return View();
+            return View(new Director());
         }
 
         // POST: Directores/Create
@@ -60,7 +60,7 @@ namespace Filmian.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DirectorID,Nombre,Nacionalidad,FechaNacimiento")] Director director)
+        public async Task<IActionResult> Create([Bind("DirectorID,Nombre,PaisId,FechaNacimiento")] Director director)
         {
             if (ModelState.IsValid)
             {

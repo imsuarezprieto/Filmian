@@ -4,14 +4,16 @@ using Filmian.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Filmian.Migrations
 {
     [DbContext(typeof(DBContext))]
-    partial class DBContextModelSnapshot : ModelSnapshot
+    [Migration("20200201153854_H")]
+    partial class H
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,20 +29,18 @@ namespace Filmian.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("FechaNacimiento")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2020, 2, 1, 0, 0, 0, 0, DateTimeKind.Local));
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("NacionalidadPaisId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PaisId")
-                        .HasColumnType("int");
-
                     b.HasKey("DirectorID");
 
-                    b.HasIndex("PaisId");
+                    b.HasIndex("NacionalidadPaisId");
 
                     b.ToTable("Directores");
                 });
@@ -89,9 +89,9 @@ namespace Filmian.Migrations
 
             modelBuilder.Entity("Filmian.Models.Director", b =>
                 {
-                    b.HasOne("Filmian.Models.Pais", "Pais")
+                    b.HasOne("Filmian.Models.Pais", "Nacionalidad")
                         .WithMany()
-                        .HasForeignKey("PaisId")
+                        .HasForeignKey("NacionalidadPaisId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
