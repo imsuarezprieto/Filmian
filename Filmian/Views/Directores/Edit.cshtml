@@ -1,42 +1,43 @@
 ﻿@model Filmian.Models.Director
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar";
 }
 
 <h1>Editar</h1>
 
-<h4>Director</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-		<form asp-action="Edit">
-			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-			<input type="hidden" asp-for="DirectorID" />
-			<div class="form-group">
-				<label asp-for="Nombre" class="control-label"></label>
-				<input asp-for="Nombre" class="form-control" />
-				<span asp-validation-for="Nombre" class="text-danger"></span>
+<div class="card shadow-lg rounded-lg m-5">
+	<div class="card-header" id="director-card">
+		<input type="submit" form="form" value="Guardar cambios" class="btn btn-primary m-5 shadow-lg border-white" id="btn-new" />
+	</div>
+	<div class="card-body">
+		<div class="row" style="margin: 3ex 6ex;">
+			<div class="col-md-4">
+				<form asp-action="Edit" id="form">
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<div class="form-group">
+						@Html.LabelFor( model => model.Nombre , htmlAttributes: new { @class = "control-label" } )
+						@Html.EditorFor( model => model.Nombre , new { htmlAttributes = new { @class = "form-control" } } )
+						@Html.ValidationMessageFor( model => model.Nombre , htmlAttributes: new { @class = "text-danger" } , message: "" )
+					</div>
+					<div class="form-group">
+						@Html.LabelFor( model => model.Pais.Nombre , htmlAttributes: new { @class = "control-label" } )
+						@Html.DropDownListFor( model => model.Pais.Nombre , selectList: new SelectList( Model.Paises , "Key" , "Value" ) , new { @class = "form-control" } )
+						@Html.ValidationMessageFor( model => model.Pais.Nombre , htmlAttributes: new { @class = "text-danger" } , message: "" )
+					</div>
+					<div class="form-group">
+						@Html.LabelFor( model => model.FechaNacimiento , htmlAttributes: new { @class = "control-label" } )
+						@Html.EditorFor( model => model.FechaNacimiento , new { htmlAttributes = new { @class = "form-control" } } )
+						@Html.ValidationMessageFor( model => model.FechaNacimiento , htmlAttributes: new { @class = "text-danger" } , message: "" )
+					</div>
+				</form>
 			</div>
-			<div class="form-group">
-				<label asp-for="Pais" class="control-label"></label>
-				<input asp-for="Pais" class="form-control" />
-				<span asp-validation-for="Pais" class="text-danger"></span>
-			</div>
-			<div class="form-group">
-				<label asp-for="FechaNacimiento" class="control-label"></label>
-				<input asp-for="FechaNacimiento" class="form-control" />
-				<span asp-validation-for="FechaNacimiento" class="text-danger"></span>
-			</div>
-			<div class="form-group">
-				<input type="submit" value="Save" class="btn btn-primary" />
-			</div>
-		</form>
-    </div>
+		</div>
+	</div>
 </div>
 
 <div>
-    <a asp-action="Index">Volver a Directores</a>
+	<a asp-action="Index" class="btn btn-primary m-5 shadow-lg" id="btn-new">Volver a Directores</a>
 </div>
 
 @section Scripts {

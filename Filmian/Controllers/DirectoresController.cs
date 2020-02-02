@@ -84,7 +84,7 @@ namespace Filmian.Controllers
         // GET: Directores/Create
         public IActionResult Create()
         {
-            return View(new Director());
+            return View( new Director() );
         }
 
         // POST: Directores/Create

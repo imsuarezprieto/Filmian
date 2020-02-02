@@ -16,14 +16,14 @@ namespace Filmian.Models
 		public Int16						DirectorID		{ get; set; }
 
 		[DisplayName( "Nombre" )]
-		[Required( ErrorMessage = "El campo Nombre no puede estar vacío" )]
+		[Required( ErrorMessage = "El campo Nombre no es válido" )]
 		public String						Nombre			{ get; set; }
 
 		[DisplayName( "País" )]
 		public virtual	Pais				Pais			{ get; set; }
 
 		[DisplayName( "País" )]
-		[Required( ErrorMessage = "El campo Nacionalidad no puede estar vacio" )]
+		[Required( ErrorMessage = "El campo Nacionalidad no es válido" )]
 		public int							PaisId			{ get; set; }
 
 		[NotMapped]
@@ -31,9 +31,9 @@ namespace Filmian.Models
 
 		[DisplayName( "Fecha de nacimiento" )]
 		[DataType( DataType.Date )]
-		[DisplayFormat( ApplyFormatInEditMode = true, DataFormatString = "{0:d MMMM yyyy}")]
-		[Required( ErrorMessage = "El campo Fecha de nacimiento no puede estar vacío" )]
-		public			DateTime			FechaNacimiento { get; set; }
+		[DisplayFormat( DataFormatString = "{0:d MMMM yyyy}")]
+		[Required( ErrorMessage = "El campo Fecha de nacimiento no es válido" )]
+		public			DateTime			FechaNacimiento { get; set; } = DateTime.Today;
 
 
 		public virtual	ICollection<Pelicula>	Peliculas	{ get; }
