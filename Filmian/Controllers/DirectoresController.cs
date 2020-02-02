@@ -26,9 +26,41 @@ namespace Filmian.Controllers
 		}
 
 		// GET: Directores
-		public async Task<IActionResult> Index()
+		public async Task<IActionResult> Index( string sortOrder )
         {
-            return View(await _context.Directors.ToListAsync());
+			ViewBag.Nombre_Sort = sortOrder == "Nombre_ASC" ? "Nombre_DESC" : "Nombre_ASC";
+			ViewBag.Pais_Sort	= sortOrder == "Pais_ASC" ? "Pais_DESC" : "Pais_ASC";
+			ViewBag.FechaNacimiento_Sort = sortOrder == "FechaNacimiento_ASC" ? "FechaNacimiento_DESC" : "FechaNacimiento_ASC";
+
+			var directors = await _context.Directors.ToListAsync();
+			
+			switch ( sortOrder ) {
+				case "Nombre_ASC" :
+					directors = directors.OrderBy( director => director.Nombre ).ToList();
+					break;
+				case "Nombre_DESC" :
+					directors = directors.OrderByDescending( director => director.Nombre ).ToList();
+					break;
+				case "Pais_ASC" :
+					directors = directors.OrderBy( director => director.Pais.Nombre ).ToList();
+					break;
+				case "Pais_DESC" :
+					directors = directors.OrderByDescending( director => director.Pais.Nombre ).ToList();
+					break;
+				case "FechaNacimiento_ASC" :
+					directors = directors.OrderBy( director => director.FechaNacimiento ).ToList();
+					break;
+				case "FechaNacimiento_DESC" :
+					directors = directors.OrderByDescending( director => director.FechaNacimiento ).ToList();
+					break;
+				default:
+					directors = directors.OrderBy( director => director.Nombre ).ToList();
+					break;
+			}
+
+			ViewBag.SortOrder = sortOrder;
+
+            return View( directors );
         }
 
         // GET: Directores/Details/5

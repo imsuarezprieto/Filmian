@@ -105,3 +105,21 @@ tr .icon:hover {
 	background-attachment: scroll;
 	background-size: cover;
 }
+
+a.headerSort {
+	color: white;
+}
+
+a.headerSort:hover {
+	color: white;
+	text-decoration: none;
+}
+
+th.headerSort:hover {
+	background-color: gray;
+	border: 1px solid gray;
+}
+
+#btn-new:hover {
+	transform: scale(1.1);
+}
