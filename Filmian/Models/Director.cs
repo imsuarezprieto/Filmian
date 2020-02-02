@@ -26,11 +26,12 @@ namespace Filmian.Models
 		[Required( ErrorMessage = "El campo Nacionalidad no puede estar vacio" )]
 		public int							PaisId			{ get; set; }
 
-
 		[NotMapped]
 		public IDictionary<int,string>		Paises			{ get; } = Pais.Paises;
 
 		[DisplayName( "Fecha de nacimiento" )]
+		[DataType( DataType.Date )]
+		[DisplayFormat( ApplyFormatInEditMode = true, DataFormatString = "{0:d MMMM yyyy}")]
 		[Required( ErrorMessage = "El campo Fecha de nacimiento no puede estar vacío" )]
 		public			DateTime			FechaNacimiento { get; set; }
 

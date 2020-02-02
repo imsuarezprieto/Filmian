@@ -78,4 +78,30 @@ body {
 
 .icon {
 	font-family: 'Segoe MDL2 Assets';
+	padding: 1ex;
+}
+
+tr .icon {
+	visibility:hidden;
+}
+
+tr:hover .icon {
+	visibility:visible;
+}
+
+tr .icon:hover {
+	background-color: #1b6ec2;
+	color: white;
+	text-decoration: none;
+	border-color: #1861ac;
+	border-width: 1px;
+	border-radius: 4px;
+}
+
+#director-card {
+	background-image: url("../img/1_p5ndUF53ZCv3VZll_3xbGw.jpg");
+	background-repeat: no-repeat;
+	background-position: center top;
+	background-attachment: scroll;
+	background-size: cover;
 }
