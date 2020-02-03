@@ -4,14 +4,16 @@ using Filmian.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Filmian.Migrations
 {
     [DbContext(typeof(DBContext))]
-    partial class DBContextModelSnapshot : ModelSnapshot
+    [Migration("20200203090409_L")]
+    partial class L
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,20 +53,6 @@ namespace Filmian.Migrations
                             FechaNacimiento = new DateTime(1918, 7, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Ingmar Bergman",
                             PaisId = 67
-                        },
-                        new
-                        {
-                            DirectorID = (short)2,
-                            FechaNacimiento = new DateTime(1956, 4, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Nombre = "Lars von Trier",
-                            PaisId = 22
-                        },
-                        new
-                        {
-                            DirectorID = (short)3,
-                            FechaNacimiento = new DateTime(1932, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Nombre = "Andréi Tarkovski",
-                            PaisId = 50
                         });
                 });
 
@@ -108,64 +96,6 @@ namespace Filmian.Migrations
                     b.HasIndex("DirectorId");
 
                     b.ToTable("Peliculas");
-
-                    b.HasData(
-                        new
-                        {
-                            PeliculaId = (short)1,
-                            DirectorId = (short)1,
-                            Duracion = (short)96,
-                            Titulo = "El séptimo sello"
-                        },
-                        new
-                        {
-                            PeliculaId = (short)2,
-                            DirectorId = (short)1,
-                            Duracion = (short)85,
-                            Titulo = "Persona"
-                        },
-                        new
-                        {
-                            PeliculaId = (short)3,
-                            DirectorId = (short)1,
-                            Duracion = (short)106,
-                            Titulo = "Gritos y susurros"
-                        },
-                        new
-                        {
-                            PeliculaId = (short)4,
-                            DirectorId = (short)2,
-                            Duracion = (short)136,
-                            Titulo = "Melancolía"
-                        },
-                        new
-                        {
-                            PeliculaId = (short)5,
-                            DirectorId = (short)2,
-                            Duracion = (short)179,
-                            Titulo = "Dogville"
-                        },
-                        new
-                        {
-                            PeliculaId = (short)6,
-                            DirectorId = (short)2,
-                            Duracion = (short)117,
-                            Titulo = "Los idiotas"
-                        },
-                        new
-                        {
-                            PeliculaId = (short)7,
-                            DirectorId = (short)3,
-                            Duracion = (short)163,
-                            Titulo = "Stalker"
-                        },
-                        new
-                        {
-                            PeliculaId = (short)8,
-                            DirectorId = (short)3,
-                            Duracion = (short)169,
-                            Titulo = "Solaris"
-                        });
                 });
 
             modelBuilder.Entity("Filmian.Models.Director", b =>
