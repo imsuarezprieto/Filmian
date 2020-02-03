@@ -1,6 +1,59 @@
 ﻿@{
-    ViewData["Title"] = "FILMIAN";
+	Layout = null;
 }
 
-<div class="text-center">
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>FILMIAN</title>
+	<link rel="stylesheet" href="~/bootstrap/dist/css/bootstrap.css" />
+	<link rel="stylesheet" href="~/css/site.css" />
+	<style>
+		.card {
+						transition-duration: 0.5s;
+			transition-timing-function: ease-in-out;
+			filter: grayscale(90%);
+		}
+		.card:hover {
+			transform:scale(1.1);
+			filter: grayscale(0%);
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark fixed-top mb-3">
+			<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/img/film.png" height="32" width="32" class="d-inline-block align-top" /> Filmian</a>
+		</nav>
+	</header>
+	<div class="container" style="padding-top:10em;">
+		<main role="main" class="row pb-3 m-5">
+			<div class="card col m-5 shadow-lg" style="padding:0">
+				<div class="card-body">
+					<h5 class="card-title">Directores</h5>
+				</div>
+				<a class="stretched-link" asp-action="Index" asp-controller="Directores"></a>
+				<img src="~/img/1_p5ndUF53ZCv3VZll_3xbGw.jpg" class="card-img-top" style="border-radius:0;">
+			</div>
+			<div class="card col m-5 shadow-lg" style="padding:0">
+				<div class="card-body">
+					<h4 class="card-title text-center">Películas</h4>
+				</div>
+				<a class="stretched-link" asp-action="Index" asp-controller="Peliculas"></a>
+				<img src="~/img/b4mjdt.jpg" class="card-img-top" style="border-radius:0;">
+			</div>
+		</main>
+	</div>
+
+	<footer class="border-top footer text-muted">
+		<div class="container">
+			&copy; 2020 - Filmian
+		</div>
+	</footer>
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>

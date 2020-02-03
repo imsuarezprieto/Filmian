@@ -131,3 +131,11 @@ th.headerSort:hover {
 #btn-new:hover {
 	transform: scale(1.1);
 }
+
+body {
+	background-image: url("../img/poster-collage.png");
+	background-repeat: no-repeat;
+	background-position: center top;
+	background-attachment: fixed;
+	background-size: cover;
+}

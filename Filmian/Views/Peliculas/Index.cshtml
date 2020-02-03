@@ -42,7 +42,7 @@
 					</th>
 					<th class="headerSort" style="transform:rotate(0);">
 						@Html.ActionLink(
-								$"{Html.DisplayNameFor( model => model.Director.Nombre )} {(ViewBag.SortOrder == "Director_ASC" ? "" : ViewBag.SortOrder == "Director_DESC" ? "" : " ")}" ,
+								$"{Html.DisplayNameFor( model => model.Director )} {(ViewBag.SortOrder == "Director_ASC" ? "" : ViewBag.SortOrder == "Director_DESC" ? "" : " ")}" ,
 								"Index" ,
 								new { sortOrder = ViewBag.Director_Sort } ,
 								new { @class = "headerSort stretched-link" }
