@@ -64,7 +64,7 @@ namespace Filmian.Controllers
         }
 
         // GET: Directores/Details/5
-        public async Task<IActionResult> Details(short? id)
+        public async Task<IActionResult> Details(short? id, string sortOrder )
         {
             if (id == null)
             {
@@ -77,6 +77,31 @@ namespace Filmian.Controllers
             {
                 return NotFound();
             }
+
+			ViewBag.Titulo_Sort		= sortOrder == "Titulo_ASC" ? "Titulo_DESC" : "Titulo_ASC";
+			ViewBag.Duracion_Sort	= sortOrder == "Duracion_ASC" ? "Duracion_DESC" : "Duracion_ASC";
+
+            var peliculas = director.Peliculas;
+
+			switch ( sortOrder ) {
+				case "Titulo_ASC" :
+					director.Peliculas = peliculas.OrderBy( film => film.Titulo ).ToList();
+					break;
+				case "Titulo_DESC" :
+					director.Peliculas = peliculas.OrderByDescending( film => film.Titulo ).ToList();
+					break;
+				case "Duracion_ASC" :
+					director.Peliculas = peliculas.OrderBy( film => film.Duracion ).ToList();
+					break;
+				case "Duracion_DESC" :
+					director.Peliculas = peliculas.OrderByDescending( film => film.Duracion ).ToList();
+					break;
+				default :
+					director.Peliculas = peliculas.OrderBy( film => film.Titulo ).ToList();
+					break;
+			}
+
+			ViewBag.SortOrder = sortOrder;
 
             return View(director);
         }
@@ -124,7 +149,7 @@ namespace Filmian.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(short id, [Bind("DirectorID,Nombre,Nacionalidad,FechaNacimiento")] Director director)
+        public async Task<IActionResult> Edit(short id, [Bind("DirectorID,Nombre,PaisId,FechaNacimiento")] Director director)
         {
             if (id != director.DirectorID)
             {

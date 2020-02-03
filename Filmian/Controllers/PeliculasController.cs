@@ -26,10 +26,41 @@ namespace Filmian.Controllers
 		}
 
         // GET: Peliculas
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index( string sortOrder )
         {
-            var dBContext = _context.Peliculas.Include(p => p.Director);
-            return View(await dBContext.ToListAsync());
+			ViewBag.Titulo_Sort		= sortOrder == "Titulo_ASC" ? "Titulo_DESC" : "Titulo_ASC";
+			ViewBag.Duracion_Sort	= sortOrder == "Duracion_ASC" ? "Duracion_DESC" : "Duracion_ASC";
+			ViewBag.Director_Sort	= sortOrder == "Director_ASC" ? "Director_DESC" : "Director_ASC";
+
+            var peliculas = await _context.Peliculas.Include(p => p.Director).ToListAsync();
+
+			switch ( sortOrder ) {
+				case "Titulo_ASC" :
+					peliculas = peliculas.OrderBy( film => film.Titulo ).ToList();
+					break;
+				case "Titulo_DESC" :
+					peliculas = peliculas.OrderByDescending( film => film.Titulo ).ToList();
+					break;
+				case "Duracion_ASC" :
+					peliculas = peliculas.OrderBy( film => film.Duracion ).ToList();
+					break;
+				case "Duracion_DESC" :
+					peliculas = peliculas.OrderByDescending( film => film.Duracion ).ToList();
+					break;
+				case "Director_ASC" :
+					peliculas = peliculas.OrderBy( film => film.Director.Nombre ).ToList();
+					break;
+				case "Director_DESC" :
+					peliculas = peliculas.OrderByDescending( film => film.Director.Nombre ).ToList();
+					break;
+				default :
+					peliculas = peliculas.OrderBy( film => film.Titulo ).ToList();
+					break;
+			}
+
+			ViewBag.SortOrder = sortOrder;
+
+            return View( peliculas );
         }
 
         // GET: Peliculas/Details/5
@@ -55,7 +86,7 @@ namespace Filmian.Controllers
         public IActionResult Create()
         {
             ViewData["DirectorId"] = new SelectList(_context.Directors, "DirectorID", "DirectorID");
-            return View();
+            return View( new Pelicula());
         }
 
         // POST: Peliculas/Create

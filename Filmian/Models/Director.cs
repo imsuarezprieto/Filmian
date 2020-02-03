@@ -36,6 +36,9 @@ namespace Filmian.Models
 		public			DateTime			FechaNacimiento { get; set; } = DateTime.Today;
 
 
-		public virtual	ICollection<Pelicula>	Peliculas	{ get; }
+		public virtual	ICollection<Pelicula>	Peliculas	{ get; set; }
+
+		public static	IDictionary<short
+			,string> Directores	{ get; } = new DBContext().Directors.ToDictionary( director => director.DirectorID, director => director.Nombre );
 	}
 }

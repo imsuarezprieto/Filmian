@@ -1,7 +1,7 @@
 ﻿@model Filmian.Models.Director
 
 @{
-	ViewData [ "Title" ] = "Details";
+	ViewData [ "Title" ] = "Detalles";
 }
 
 <h1>Detalles</h1>
@@ -18,19 +18,65 @@
 					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 					<div class="form-group">
 						@Html.LabelFor( model => model.Nombre , htmlAttributes: new { @class = "control-label" } )
-						@Html.EditorFor( model => model.Nombre , new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } } )
+						@Html.EditorFor( model => model.Nombre , new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly" } } )
 					</div>
 					<div class="form-group">
 						@Html.LabelFor( model => model.Pais.Nombre , htmlAttributes: new { @class = "control-label" } )
-						@Html.DropDownListFor( model => model.Pais.Nombre , selectList: new SelectList( Model.Paises , "Key" , "Value" ) , new { @class = "form-control", @readonly = "readonly" } )
+						@Html.EditorFor( model => model.Pais.Nombre , new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly" } } )
 					</div>
 					<div class="form-group">
 						@Html.LabelFor( model => model.FechaNacimiento , htmlAttributes: new { @class = "control-label" } )
-						@Html.EditorFor( model => model.FechaNacimiento , new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } } )
+						@Html.EditorFor( model => model.FechaNacimiento , new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly" } } )
 					</div>
 				</form>
 			</div>
 		</div>
+	</div>
+	<div class="card-body">
+		<h6 class="card-subtitle mb-2 text-muted">Películas</h6>
+		<table class="table table-striped table-hover" style="margin-top:3ex;">
+			<caption style="margin-left:7ex; margin-top:2ex;">@Model.Peliculas.Count() películas</caption>
+			<thead class="thead-dark">
+				<tr>
+					<th class="bg-white" style="width:6ex; border: 2px solid white"></th>
+					<th class="headerSort" style="transform:rotate(0);">
+						@Html.ActionLink(
+								$"{Html.DisplayNameFor( model => model.Peliculas.FirstOrDefault().Titulo )} {(ViewBag.SortOrder == "Titulo_ASC" ? "" : ViewBag.SortOrder == "Titulo_DESC" ? "" : " ")}" ,
+								"Details" ,
+								new { sortOrder = ViewBag.Titulo_Sort } ,
+								new { @class = "headerSort stretched-link" }
+						)
+					</th>
+					<th class="headerSort" style="transform:rotate(0);">
+						@Html.ActionLink(
+								$"{Html.DisplayNameFor( model => model.Peliculas.FirstOrDefault().Duracion )} {(ViewBag.SortOrder == "Duracion_ASC" ? "" : ViewBag.SortOrder == "Duracion_DESC" ? "" : " ")}" ,
+								"Details" ,
+								new { sortOrder = ViewBag.Duracion_Sort } ,
+								new { @class = "headerSort stretched-link" }
+						)
+					</th>
+					<th class="bg-white" style="width:6ex; border: 2px solid white"></th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model.Peliculas) {
+					<tr>
+						<td class="bg-white" style="border-top: 2px solid white;">
+						</td>
+						<td style="transform:rotate(0);">
+							@Html.DisplayFor( modelItem => item.Titulo )
+							<a asp-action="Details" asp-route-id="@item.PeliculaId" class="stretched-link"></a>
+						</td>
+						<td style="transform:rotate(0);">
+							@Html.DisplayFor( modelItem => item.Duracion )
+							<a asp-action="Details" asp-route-id="@item.PeliculaId" class="stretched-link"></a>
+						</td>
+						<td class="bg-white" style="border-top: 2px solid white;">
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
 	</div>
 </div>
 

@@ -1,36 +1,43 @@
 ﻿@model Filmian.Models.Pelicula
 
 @{
-    ViewData["Title"] = "Detalles";
+	ViewData [ "Title" ] = "Detalles";
 }
 
 <h1>Detalles</h1>
 
+<div class="card shadow-lg rounded-lg m-5">
+	<div class="card-header" id="film-card">
+		<a asp-action="Edit" asp-route-id="@Model.PeliculaId" class="btn btn-primary m-5 shadow-lg border-white" id="btn-new">Editar película</a>
+		@*<input type="submit" form="form" value="Guardar cambios" class="btn btn-primary m-5 shadow-lg border-white" id="btn-new" />*@
+	</div>
+	<div class="card-body">
+		<div class="row" style="margin: 3ex 6ex;">
+			<div class="col-md-4">
+				<form asp-action="" id="form">
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<div class="form-group">
+						@Html.LabelFor( model => model.Titulo , htmlAttributes: new { @class = "control-label" } )
+						@Html.EditorFor( model => model.Titulo , new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly" } } )
+					</div>
+					<div class="form-group">
+						@Html.LabelFor( model => model.Duracion , htmlAttributes: new { @class = "control-label" } )
+						@Html.EditorFor( model => model.Duracion , new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly" } } )
+					</div>
+					<div class="form-group">
+						@Html.LabelFor( model => model.Director.Nombre , htmlAttributes: new { @class = "control-label" } )
+						@Html.EditorFor( model => model.Director.Nombre , new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly" } } )
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
 <div>
-    <h4>Película</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Titulo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Titulo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Duracion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Duracion)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Director)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Director.DirectorID)
-        </dd>
-    </dl>
+	<a asp-action="Index" class="btn btn-primary m-5 shadow-lg" id="btn-new">Volver a Películas</a>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.PeliculaId">Editar</a> |
-    <a asp-action="Index">Volver a Películas</a>
+	@*<a asp-action="Edit" asp-route-id="@Model.DirectorID">Edit</a>*@
+	<a asp-action="Index">Volver a Directores</a>
 </div>

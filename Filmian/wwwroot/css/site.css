@@ -106,6 +106,14 @@ tr .icon:hover {
 	background-size: cover;
 }
 
+#film-card {
+	background-image: url("../img/b4mjdt.jpg");
+	background-repeat: no-repeat;
+	background-position: center top;
+	background-attachment: scroll;
+	background-size: cover;
+}
+
 a.headerSort {
 	color: white;
 }

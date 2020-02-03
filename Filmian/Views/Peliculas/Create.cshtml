@@ -1,42 +1,45 @@
 ﻿@model Filmian.Models.Pelicula
 
 @{
-    ViewData["Title"] = "Añadir";
+	ViewData [ "Title" ] = "Añadir";
 }
 
 <h1>Añadir</h1>
 
-<h4>Película</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Titulo" class="control-label"></label>
-                <input asp-for="Titulo" class="form-control" />
-                <span asp-validation-for="Titulo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Duracion" class="control-label"></label>
-                <input asp-for="Duracion" class="form-control" />
-                <span asp-validation-for="Duracion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DirectorId" class="control-label"></label>
-                <select asp-for="DirectorId" class ="form-control" asp-items="ViewBag.DirectorId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+<div class="card shadow-lg rounded-lg m-5">
+	<div class="card-header" id="film-card">
+		<input type="submit" form="form" value="Crear película" class="btn btn-primary m-5 shadow-lg border-white" id="btn-new" />
+	</div>
+	<div class="card-body">
+		<div class="row" style="margin: 3ex 6ex;">
+			<div class="col-md-4">
+				<form asp-action="Create" id="form">
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<div class="form-group">
+						@Html.LabelFor( model => model.Titulo , htmlAttributes: new { @class = "control-label" } )
+						@Html.EditorFor( model => model.Titulo , new { htmlAttributes = new { @class = "form-control" } } )
+						@Html.ValidationMessageFor( model => model.Titulo , htmlAttributes: new { @class = "text-danger" } , message: "" )
+					</div>
+					<div class="form-group">
+						@Html.LabelFor( model => model.Duracion , htmlAttributes: new { @class = "control-label" } )
+						@Html.EditorFor( model => model.Duracion , new { htmlAttributes = new { @class = "form-control" } } )
+						@Html.ValidationMessageFor( model => model.Duracion , htmlAttributes: new { @class = "text-danger" } , message: "" )
+					</div>
+					<div class="form-group">
+						@Html.LabelFor( model => model.Director.Nombre , htmlAttributes: new { @class = "control-label" } )
+						@Html.DropDownListFor( model => model.DirectorId , selectList: new SelectList( Model.Directores, "Key", "Value" ) , new { @class = "form-control" } )
+						@Html.ValidationMessageFor( model => model.Director.Nombre , htmlAttributes: new { @class = "text-danger" } , message: "" )
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
 
 <div>
-    <a asp-action="Index">Volver a Películas</a>
+	<a asp-action="Index" class="btn btn-primary m-5 shadow-lg" id="btn-new">Volver a Películas</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+	@{await Html.RenderPartialAsync( "_ValidationScriptsPartial" );}
 }

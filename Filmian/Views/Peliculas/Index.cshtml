@@ -1,47 +1,73 @@
 ﻿@model IEnumerable<Filmian.Models.Pelicula>
 
 @{
-    ViewData["Title"] = "Películas";
+	ViewData [ "Title" ] = "Películas";
 }
 
 <h1>Películas</h1>
 
-<p>
-    <a asp-action="Create">Añadir nueva película</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Titulo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Duracion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Director)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Titulo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Duracion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Director.DirectorID)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.PeliculaId">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.PeliculaId">Detalles</a> |
-                <a asp-action="Delete" asp-route-id="@item.PeliculaId">Eliminar</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="card shadow-lg rounded-lg m-5">
+	<div class="card-header" id="film-card">
+		<a asp-action="Create" class="btn btn-primary m-5 shadow-lg border-white" id="btn-new">Añadir nueva película</a>
+	</div>
+	<div class="card-body">
+		<table class="table table-striped table-hover" style="margin-top:3ex;">
+			<caption style="margin-left:7ex; margin-top:2ex;">@Model.Count() películas</caption>
+			<thead class="thead-dark">
+				<tr>
+					<th class="bg-white" style="width:6ex; border: 2px solid white"></th>
+					<th class="headerSort" style="transform:rotate(0);">
+						@Html.ActionLink(
+								$"{Html.DisplayNameFor( model => model.Titulo )} {(ViewBag.SortOrder == "Titulo_ASC" ? "" : ViewBag.SortOrder == "Titulo_DESC" ? "" : " ")}" ,
+								"Index" ,
+								new { sortOrder = ViewBag.Titulo_Sort } ,
+								new { @class = "headerSort stretched-link" }
+						)
+					</th>
+					<th class="headerSort" style="transform:rotate(0);">
+						@Html.ActionLink(
+								$"{Html.DisplayNameFor( model => model.Duracion )} {(ViewBag.SortOrder == "Duracion_ASC" ? "" : ViewBag.SortOrder == "Duracion_DESC" ? "" : " ")}" ,
+								"Index" ,
+								new { sortOrder = ViewBag.Duracion_Sort } ,
+								new { @class = "headerSort stretched-link" }
+						)
+					</th>
+					<th class="headerSort" style="transform:rotate(0);">
+						@Html.ActionLink(
+								$"{Html.DisplayNameFor( model => model.Director.Nombre )} {(ViewBag.SortOrder == "Director_ASC" ? "" : ViewBag.SortOrder == "Director_DESC" ? "" : " ")}" ,
+								"Index" ,
+								new { sortOrder = ViewBag.Director_Sort } ,
+								new { @class = "headerSort stretched-link" }
+						)
+					</th>
+					<th class="bg-white" style="width:6ex; border: 2px solid white"></th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model) {
+				<tr>
+					<td class="bg-white" style="border-top: 2px solid white;">
+						<a asp-action="Edit" asp-route-id="@item.PeliculaId"><span data-toggle="popover" data-placement="top" data-content="Editar" data-trigger="hover" class="icon"></span></a>
+					</td>
+					<td style="transform:rotate(0);">
+						@Html.DisplayFor( modelItem => item.Titulo )
+						<a asp-action="Details" asp-route-id="@item.PeliculaId" class="stretched-link"></a>
+					</td>
+					<td style="transform:rotate(0);">
+						@Html.DisplayFor( modelItem => item.Duracion )
+						<a asp-action="Details" asp-route-id="@item.PeliculaId" class="stretched-link"></a>
+					</td>
+					<td style="transform:rotate(0);">
+						@Html.DisplayFor( modelItem => item.Director.Nombre )
+						<a asp-action="Details" asp-route-id="@item.PeliculaId" class="stretched-link"></a>
+					</td>
+					<td class="bg-white" style="border-top: 2px solid white;">
+						<a asp-action="Delete" asp-route-id="@item.PeliculaId"><span data-toggle="popover" data-placement="top" data-content="Eliminar" data-trigger="hover" class="icon"></span></a>
+					</td>
+				</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>
+

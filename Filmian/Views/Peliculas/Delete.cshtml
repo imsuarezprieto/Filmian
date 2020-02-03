@@ -1,39 +1,65 @@
 ﻿@model Filmian.Models.Pelicula
 
 @{
-    ViewData["Title"] = "Eliminar";
+	ViewData [ "Title" ] = "Eliminar";
 }
 
 <h1>Eliminar</h1>
 
-<h3>¿Seguro que desea eliminar esta película?</h3>
-<div>
-    <h4>Película</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Titulo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Titulo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Duracion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Duracion)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Director)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Director.DirectorID)
-        </dd class>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="PeliculaId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Volver a Películas</a>
-    </form>
+<div class="card shadow-lg rounded-lg m-5">
+	<div class="card-header" id="film-card">
+		@*<input type="submit" form="form" value="Eliminar director" class="btn btn-danger m-5 shadow-lg border-white" id="btn-new" />*@
+		<button type="button" class="btn btn-primary  m-5 shadow-lg border-white" id="btn-new" data-toggle="modal" data-target="#deleteModalCenter">
+			Eliminar película
+		</button>
+	</div>
+	<div class="card-body">
+		<div class="row" style="margin: 3ex 6ex;">
+			<div class="col-md-4">
+				<form asp-action="Delete" id="form">
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<div class="form-group">
+						@Html.LabelFor( model => model.Titulo , htmlAttributes: new { @class = "control-label" } )
+						@Html.EditorFor( model => model.Titulo , new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly" } } )
+					</div>
+					<div class="form-group">
+						@Html.LabelFor( model => model.Duracion , htmlAttributes: new { @class = "control-label" } )
+						@Html.EditorFor( model => model.Duracion , new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly" } } )
+					</div>
+					<div class="form-group">
+						@Html.LabelFor( model => model.Director.Nombre , htmlAttributes: new { @class = "control-label" } )
+						@Html.EditorFor( model => model.Director.Nombre , new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly" } } )
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalCenterTitle">Eliminar película</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				¿Está seguro de que desea eliminar la película <strong>@Html.DisplayFor( model => model.Titulo )</strong>?
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+				<input type="submit" form="form" value="Eliminar" class="btn btn-danger" />
+				@*<button type="button" class="btn btn-danger">Eliminar</button>*@
+			</div>
+		</div>
+	</div>
+</div>
+
+<div>
+	<a asp-action="Index" class="btn btn-primary m-5 shadow-lg" id="btn-new">Volver a Películas</a>
+</div>
+
+
