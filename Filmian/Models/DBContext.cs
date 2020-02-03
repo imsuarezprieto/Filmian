@@ -30,7 +30,7 @@ namespace Filmian.Models
 		{
 			optionsBuilder
 					.UseLazyLoadingProxies()
-					.UseSqlServer( @"Server=localhost\SQLEXPRESS;Database=PROYECTO;Trusted_Connection=True;" );
+					.UseSqlServer( @"Server=localhost\SQLEXPRESS;Database=FILMIAN;Trusted_Connection=True;" );
 		}
 
 		protected override void OnModelCreating( ModelBuilder modelBuilder )
@@ -70,48 +70,64 @@ namespace Filmian.Models
 						PeliculaId		= 1,
 						Titulo			= "El séptimo sello",
 						Duracion		= 96,
+						Año				= 1957,
+						Valoracion		= 8.2M,
 						DirectorId		= 1 // Ingmar Bergman,
 					},
 					new Pelicula {
 						PeliculaId		= 2,
 						Titulo			= "Persona",
 						Duracion		= 85,
+						Año				= 1966,
+						Valoracion		= 8.2M,
 						DirectorId		= 1 // Ingmar Bergman,
 					},
 					new Pelicula {
 						PeliculaId		= 3,
 						Titulo			= "Gritos y susurros",
 						Duracion		= 106,
+						Año				= 1972,
+						Valoracion		= 7.8M,
 						DirectorId		= 1 // Ingmar Bergman,
 					},
 					new Pelicula {
 						PeliculaId		= 4,
 						Titulo			= "Melancolía",
 						Duracion		= 136,
+						Año				= 2011,
+						Valoracion		= 6.8M,
 						DirectorId		= 2 // Lars von Trier
 					},
 					new Pelicula {
 						PeliculaId		= 5,
 						Titulo			= "Dogville",
 						Duracion		= 179,
+						Año				= 2003,
+						Valoracion		= 7.5M,
 						DirectorId		= 2 // Lars von Trier
 					},
 					new Pelicula {
 						PeliculaId		= 6,
 						Titulo			= "Los idiotas",
 						Duracion		= 117,
+						Año				= 1998,
+						Valoracion		= 6.6M,
 						DirectorId		= 2 // Lars von Trier
 					},
 					new Pelicula {
 						PeliculaId		= 7,
 						Titulo			= "Stalker",
 						Duracion		= 163,
+						Año				= 1972,
+						Valoracion		= 7.9M,
 						DirectorId		= 3 // Andréi Tarkovski
 					},
 					new Pelicula {
 						PeliculaId		= 8,
 						Titulo			= "Solaris",
 						Duracion		= 169,
+						Año				= 1972,
+						Valoracion		= 7.5M,
 						DirectorId		= 3 // Andréi Tarkovski
 					}
 				);

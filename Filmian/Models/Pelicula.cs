@@ -21,8 +21,17 @@ namespace Filmian.Models
 		[DisplayName( "Duración" )]
 		[Required( ErrorMessage = "El campo Duración no es válido" )]
 		[DisplayFormat( DataFormatString = "{0:# min.}" )]
+		[Range( 0, 1000, ErrorMessage = "La duración no está en rango")]
 		public Int16	Duracion		{ get; set; }
 
+		[DisplayName( "Año" )]
+		[Required( ErrorMessage = "El campo Año es necesario" )]
+		[Range( 1850, 2020, ErrorMessage = "El Año no está en rango" )]
+		public Int16	Año				{ get; set; }
+
+		[DisplayName( "Valoración" )]
+		[Range( 0, 10 )]
+		public decimal	Valoracion		{ get; set; }
 		
 		[DisplayName( "Director" )]
 		[Required( ErrorMessage = "El campo Director no es válido" )]
@@ -32,7 +41,7 @@ namespace Filmian.Models
 		public virtual	Director	Director		{ get; set; }
 
 		[NotMapped]
-		public IDictionary<short,string> Directores { get; } = Director.Directores;
+		public static IDictionary<short , string> Directores { get; } = Director.Directores;
 
 	}
 }

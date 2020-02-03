@@ -34,9 +34,25 @@
 					</th>
 					<th class="headerSort" style="transform:rotate(0);">
 						@Html.ActionLink(
+								$"{Html.DisplayNameFor( model => model.Año )} {(ViewBag.SortOrder == "Año_ASC" ? "" : ViewBag.SortOrder == "Año_DESC" ? "" : " ")}" ,
+								"Index" ,
+								new { sortOrder = ViewBag.Año_Sort } ,
+								new { @class = "headerSort stretched-link" }
+						)
+					</th>
+					<th class="headerSort" style="transform:rotate(0);">
+						@Html.ActionLink(
 								$"{Html.DisplayNameFor( model => model.Director.Nombre )} {(ViewBag.SortOrder == "Director_ASC" ? "" : ViewBag.SortOrder == "Director_DESC" ? "" : " ")}" ,
 								"Index" ,
 								new { sortOrder = ViewBag.Director_Sort } ,
+								new { @class = "headerSort stretched-link" }
+						)
+					</th>
+					<th class="headerSort" style="transform:rotate(0);">
+						@Html.ActionLink(
+								$"{Html.DisplayNameFor( model => model.Valoracion )} {(ViewBag.SortOrder == "Valoracion_ASC" ? "" : ViewBag.SortOrder == "Valoracion_DESC" ? "" : " ")}" ,
+								"Index" ,
+								new { sortOrder = ViewBag.Valoracion_Sort } ,
 								new { @class = "headerSort stretched-link" }
 						)
 					</th>
@@ -58,7 +74,15 @@
 						<a asp-action="Details" asp-route-id="@item.PeliculaId" class="stretched-link"></a>
 					</td>
 					<td style="transform:rotate(0);">
+						@Html.DisplayFor( modelItem => item.Año )
+						<a asp-action="Details" asp-route-id="@item.PeliculaId" class="stretched-link"></a>
+					</td>
+					<td style="transform:rotate(0);">
 						@Html.DisplayFor( modelItem => item.Director.Nombre )
+						<a asp-action="Details" asp-route-id="@item.PeliculaId" class="stretched-link"></a>
+					</td>
+					<td style="transform:rotate(0);">
+						@Html.DisplayFor( modelItem => item.Valoracion )
 						<a asp-action="Details" asp-route-id="@item.PeliculaId" class="stretched-link"></a>
 					</td>
 					<td class="bg-white" style="border-top: 2px solid white;">

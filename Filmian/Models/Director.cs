@@ -27,7 +27,7 @@ namespace Filmian.Models
 		public int							PaisId			{ get; set; }
 
 		[NotMapped]
-		public IDictionary<int,string>		Paises			{ get; } = Pais.Paises;
+		public IDictionary<int,string>		Paises			{ get; } //= Pais.Paises;
 
 		[DisplayName( "Fecha de nacimiento" )]
 		[DataType( DataType.Date )]
@@ -38,7 +38,7 @@ namespace Filmian.Models
 
 		public virtual	ICollection<Pelicula>	Peliculas	{ get; set; }
 
-		public static	IDictionary<short
-			,string> Directores	{ get; } = new DBContext().Directors.ToDictionary( director => director.DirectorID, director => director.Nombre );
+		[NotMapped]
+		public static IDictionary<short , string> Directores { get; } = new DBContext().Directors.ToDictionary( director => director.DirectorID , director => director.Nombre );
 	}
 }

@@ -25,8 +25,18 @@
 						@Html.EditorFor( model => model.Duracion , new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly" } } )
 					</div>
 					<div class="form-group">
+						@Html.LabelFor( model => model.Año , htmlAttributes: new { @class = "control-label" } )
+						@Html.EditorFor( model => model.Año , new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly" } } )
+						@Html.ValidationMessageFor( model => model.Año , htmlAttributes: new { @class = "text-danger" } , message: "" )
+					</div>
+					<div class="form-group">
 						@Html.LabelFor( model => model.Director.Nombre , htmlAttributes: new { @class = "control-label" } )
 						@Html.EditorFor( model => model.Director.Nombre , new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly" } } )
+					</div>
+					<div class="form-group">
+						@Html.LabelFor( model => model.Valoracion , htmlAttributes: new { @class = "control-label" } )
+						@Html.EditorFor( model => model.Valoracion , new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly" } } )
+						@Html.ValidationMessageFor( model => model.Valoracion , htmlAttributes: new { @class = "text-danger" } , message: "" )
 					</div>
 				</form>
 			</div>

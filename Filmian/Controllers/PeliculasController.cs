@@ -31,6 +31,8 @@ namespace Filmian.Controllers
 			ViewBag.Titulo_Sort		= sortOrder == "Titulo_ASC" ? "Titulo_DESC" : "Titulo_ASC";
 			ViewBag.Duracion_Sort	= sortOrder == "Duracion_ASC" ? "Duracion_DESC" : "Duracion_ASC";
 			ViewBag.Director_Sort	= sortOrder == "Director_ASC" ? "Director_DESC" : "Director_ASC";
+			ViewBag.Año_Sort		= sortOrder == "Año_ASC" ? "Año_DESC" : "Año_ASC";
+			ViewBag.Valoracion_Sort	= sortOrder == "Valoracion_ASC" ? "Valoracion_DESC" : "Valoracion_ASC";
 
             var peliculas = await _context.Peliculas.Include(p => p.Director).ToListAsync();
 
@@ -52,6 +54,18 @@ namespace Filmian.Controllers
 					break;
 				case "Director_DESC" :
 					peliculas = peliculas.OrderByDescending( film => film.Director.Nombre ).ToList();
+					break;
+				case "Año_ASC" :
+					peliculas = peliculas.OrderBy( film => film.Año ).ToList();
+					break;
+				case "Año_DESC" :
+					peliculas = peliculas.OrderByDescending( film => film.Año ).ToList();
+					break;
+				case "Valoracion_ASC" :
+					peliculas = peliculas.OrderBy( film => film.Valoracion ).ToList();
+					break;
+				case "Valoracion_DESC" :
+					peliculas = peliculas.OrderByDescending( film => film.Valoracion ).ToList();
 					break;
 				default :
 					peliculas = peliculas.OrderBy( film => film.Titulo ).ToList();
@@ -94,7 +108,7 @@ namespace Filmian.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PeliculaId,Titulo,Duracion,DirectorId")] Pelicula pelicula)
+        public async Task<IActionResult> Create([Bind("PeliculaId,Titulo,Duracion,Año,DirectorId,Valoracion")] Pelicula pelicula)
         {
             if (ModelState.IsValid)
             {
@@ -128,7 +142,7 @@ namespace Filmian.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(short id, [Bind("PeliculaId,Titulo,Duracion,DirectorId")] Pelicula pelicula)
+        public async Task<IActionResult> Edit(short id, [Bind("PeliculaId,Titulo,Duracion,Año,DirectorId,Valoracion")] Pelicula pelicula)
         {
             if (id != pelicula.PeliculaId)
             {

@@ -19,7 +19,8 @@ namespace Filmian.Models
 		[Required, DisplayName( "País" )]
 		public string	Nombre		{ get; set; }
 
-		public static	IDictionary<int,string> Paises { get; } = new DBContext().Pais.ToDictionary( pais => pais.PaisId, pais => pais.Nombre);
-		
+		[NotMapped]
+		public static IDictionary<int , string> Paises { get; } = new DBContext().Pais.ToDictionary( pais => pais.PaisId , pais => pais.Nombre );
+
 	}
 }
