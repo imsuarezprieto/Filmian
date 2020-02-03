@@ -27,7 +27,7 @@ namespace Filmian.Models
 		public int							PaisId			{ get; set; }
 
 		[NotMapped]
-		public IDictionary<int,string>		Paises			{ get; } //= Pais.Paises;
+		public IDictionary<int,string>		Paises			{ get; } = Pais.Paises;
 
 		[DisplayName( "Fecha de nacimiento" )]
 		[DataType( DataType.Date )]
