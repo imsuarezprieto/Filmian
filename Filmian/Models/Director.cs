@@ -39,6 +39,7 @@ namespace Filmian.Models
 		public virtual	ICollection<Pelicula>	Peliculas	{ get; set; }
 
 		[NotMapped]
-		public static IDictionary<short , string> Directores { get; } = new DBContext().Directors.ToDictionary( director => director.DirectorID , director => director.Nombre );
+		public static IDictionary<short , string> Directores { get 
+				=> new DBContext().Directors.ToDictionary( director => director.DirectorID , director => director.Nombre ); }
 	}
 }
