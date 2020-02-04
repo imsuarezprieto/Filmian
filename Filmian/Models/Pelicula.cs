@@ -41,7 +41,7 @@ namespace Filmian.Models
 		public virtual	Director	Director		{ get; set; }
 
 		[NotMapped]
-		public static IDictionary<short , string> Directores { get; } = Director.Directores;
+		public static IDictionary<short , string> Directores { get => Director.Directores; }
 
 	}
 }
